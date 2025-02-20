@@ -26,11 +26,15 @@ def check_answer(guess, bio_a, bio_b):
     else:
         return guess == 'b'
 
+def clear_screen():
+    """Clears the console screen."""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def higher_lower():
     """Main game function."""
     high_score = 0
     while True:
+        clear_screen()
         print(logo)
         user_score = 0
         bio_a = get_random_bio()
@@ -47,10 +51,12 @@ def higher_lower():
 
             if check_answer(user_input, bio_a, bio_b):
                 user_score += 1
+                clear_screen()
                 print(logo)
                 print(f"WOW! Nailed it! Current score: {user_score}")
                 bio_a = bio_b  # Move bio_b to bio_a for the next round
             else:
+                clear_screen()
                 print(logo)
                 print(f"Oh noh! Bad luck -guessed wrong-. Final score: {user_score}")
                 if user_score > high_score:
